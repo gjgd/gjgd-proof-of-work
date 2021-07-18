@@ -4,6 +4,8 @@ import time
 
 max_nonce = 2 ** 32  # 4 billion
 
+# Data you want to generate the proof of work for
+# In Bitcoin this would be the previous block header
 data = "gjgd"
 
 def proof_of_work(difficulty_bits):
