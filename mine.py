@@ -1,3 +1,4 @@
+# Adapted from https://gist.github.com/scharton/102100f39fa9c8a9b55330a507a5590f
 import hashlib
 import time
 
