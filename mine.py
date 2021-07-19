@@ -2,8 +2,6 @@
 import hashlib
 import time
 
-max_nonce = 2 ** 32  # 4 billion
-
 # Data you want to generate the proof of work for
 # In Bitcoin this would be the previous block header
 data = "gjgd"
@@ -13,7 +11,8 @@ def proof_of_work(difficulty_bits):
     # calculate the difficulty target
     target = 2 ** (256-difficulty_bits)
 
-    for nonce in range(max_nonce):
+    nonce = 2283786731
+    while True:
         data_to_be_hashed = (str(data) + " " + str(nonce)).encode('utf-8')
         hash_result = hashlib.sha256(data_to_be_hashed).hexdigest()
 
@@ -23,20 +22,15 @@ def proof_of_work(difficulty_bits):
             print("Proof of work %s" % data_to_be_hashed)
             print("Hash is %s" % hash_result)
             return (hash_result, nonce)
-
-    print("Failed after %d (max_nonce) tries" % nonce)
-    return nonce
-
+        nonce += 1
 
 if __name__ == '__main__':
 
-    nonce = 0
     hash_result = ''
 
     # difficulty from 0 to 31 bits
-    original_max_range = 32
-    test_range = 32
-    for difficulty_bits in range(test_range):
+    test_range = 35
+    for difficulty_bits in range(31, test_range):
 
         difficulty = 2 ** difficulty_bits
         print("Difficulty: %ld (%d bits)" % (difficulty, difficulty_bits))
