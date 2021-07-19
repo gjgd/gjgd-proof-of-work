@@ -11,7 +11,7 @@ def proof_of_work(difficulty_bits):
     # calculate the difficulty target
     target = 2 ** (256-difficulty_bits)
 
-    nonce = 2283786731
+    nonce = 0
     while True:
         data_to_be_hashed = (str(data) + " " + str(nonce)).encode('utf-8')
         hash_result = hashlib.sha256(data_to_be_hashed).hexdigest()
@@ -28,9 +28,9 @@ if __name__ == '__main__':
 
     hash_result = ''
 
-    # difficulty from 0 to 31 bits
-    test_range = 35
-    for difficulty_bits in range(31, test_range):
+    # difficulty from 0 to 40 bits
+    test_range = 40
+    for difficulty_bits in range(0, test_range):
 
         difficulty = 2 ** difficulty_bits
         print("Difficulty: %ld (%d bits)" % (difficulty, difficulty_bits))
